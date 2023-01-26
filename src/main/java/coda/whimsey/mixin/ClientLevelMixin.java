@@ -1,6 +1,6 @@
-package coda.whimsicalwinds.mixin;
+package coda.whimsey.mixin;
 
-import coda.whimsicalwinds.util.ClientLevelExtension;
+import coda.whimsey.util.ClientLevelExtension;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;

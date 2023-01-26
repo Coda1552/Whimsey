@@ -1,6 +1,6 @@
-package coda.whimsicalwinds.mixin;
+package coda.whimsey.mixin;
 
-import coda.whimsicalwinds.terrablender.WWBiomes;
+import coda.whimsey.terrablender.WBiomes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -23,7 +23,7 @@ public abstract class LevelMixin extends net.minecraftforge.common.capabilities.
 
     @Inject(at = @At("HEAD"), method = "isRainingAt", cancellable = true)
     public void moreRain(BlockPos pPosition, CallbackInfoReturnable<Boolean> cir) {
-        if (getBiomeManager().getBiome(pPosition).is(WWBiomes.STORMY_SEA) && canSeeSky(pPosition)) {
+        if (getBiomeManager().getBiome(pPosition).is(WBiomes.STORMY_SEA) && canSeeSky(pPosition)) {
             cir.setReturnValue(true);
             cir.cancel();
         }

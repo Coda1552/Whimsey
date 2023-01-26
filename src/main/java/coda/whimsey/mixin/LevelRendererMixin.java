@@ -1,6 +1,6 @@
-package coda.whimsicalwinds.mixin;
+package coda.whimsey.mixin;
 
-import coda.whimsicalwinds.terrablender.WWBiomes;
+import coda.whimsey.terrablender.WBiomes;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -110,7 +110,7 @@ public abstract class LevelRendererMixin {
                 if (j2 != k2) {
                     Random random = new Random((long) (k1 * k1 * 3121 + k1 * 45238971 ^ j1 * j1 * 418711 + j1 * 13761));
                     blockpos$mutableblockpos.set(k1, j2, j1);
-                    if (level.getBiomeManager().getBiome(blockpos$mutableblockpos).is(WWBiomes.STORMY_SEA)) {
+                    if (level.getBiomeManager().getBiome(blockpos$mutableblockpos).is(WBiomes.STORMY_SEA)) {
                         if (i1 != 0) {
                             if (i1 >= 0) {
                                 tesselator.end();
@@ -159,7 +159,7 @@ public abstract class LevelRendererMixin {
             int k = random.nextInt(21) - 10;
             int l = random.nextInt(21) - 10;
             BlockPos blockpos2 = levelreader.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, blockpos.offset(k, 0, l));
-            if (blockpos2.getY() > levelreader.getMinBuildHeight() && blockpos2.getY() <= blockpos.getY() + 10 && blockpos2.getY() >= blockpos.getY() - 10 && level.getBiome(blockpos2).is(WWBiomes.STORMY_SEA)) {
+            if (blockpos2.getY() > levelreader.getMinBuildHeight() && blockpos2.getY() <= blockpos.getY() + 10 && blockpos2.getY() >= blockpos.getY() - 10 && level.getBiome(blockpos2).is(WBiomes.STORMY_SEA)) {
                 blockpos1 = blockpos2.below();
                 if (this.minecraft.options.particles == ParticleStatus.MINIMAL) {
                     break;

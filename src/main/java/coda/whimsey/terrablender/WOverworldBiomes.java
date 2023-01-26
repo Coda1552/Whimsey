@@ -1,4 +1,4 @@
-package coda.whimsicalwinds.terrablender;
+package coda.whimsey.terrablender;
 
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.placement.AquaticPlacements;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.ModList;
 
 import javax.annotation.Nullable;
 
-public class WWOverworldBiomes {
+public class WOverworldBiomes {
     @Nullable
     private static final Music NORMAL_MUSIC = null;
 

@@ -1,4 +1,4 @@
-package coda.whimsicalwinds.util;
+package coda.whimsey.util;
 
 public interface ClientLevelExtension {
 

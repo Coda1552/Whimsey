@@ -1,4 +1,4 @@
-package coda.whimsicalwinds.terrablender;
+package coda.whimsey.terrablender;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Registry;
@@ -12,8 +12,8 @@ import terrablender.api.RegionType;
 
 import java.util.function.Consumer;
 
-public class WWRegion extends Region {
-    public WWRegion(ResourceLocation name, int weight)
+public class WRegion extends Region {
+    public WRegion(ResourceLocation name, int weight)
     {
         super(name, RegionType.OVERWORLD, weight);
     }
@@ -21,9 +21,9 @@ public class WWRegion extends Region {
     @Override
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
-            builder.replaceBiome(Biomes.PLAINS, WWBiomes.REGAL_MEADOW);
-            builder.replaceBiome(Biomes.DEEP_COLD_OCEAN, WWBiomes.STORMY_SEA);
-            builder.replaceBiome(Biomes.PLAINS, WWBiomes.ROLLING_HILLS);
+            builder.replaceBiome(Biomes.PLAINS, WBiomes.REGAL_MEADOW);
+            builder.replaceBiome(Biomes.DEEP_COLD_OCEAN, WBiomes.STORMY_SEA);
+            builder.replaceBiome(Biomes.PLAINS, WBiomes.ROLLING_HILLS);
         });
     }
 }

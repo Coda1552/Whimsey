@@ -1,15 +1,15 @@
 {
   "required": true,
-  "package": "coda.whimsicalwinds.mixin",
+  "package": "coda.whimsey.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "whimsicalwinds.refmap.json",
+  "refmap": "whimsey.refmap.json",
   "mixins": [
     "LevelMixin"
   ],
   "client": [
-    "LevelRendererMixin",
     "ClientLevelMixin",
-    "FogRendererMixin"
+    "FogRendererMixin",
+    "LevelRendererMixin"
   ],
   "minVersion": "0.8"
 }

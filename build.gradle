@@ -23,8 +23,8 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 
 version = '1.0'
-group = 'coda.whimsicalwinds' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'whimsicalwinds'
+group = 'coda.whimsey' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'whimsey'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -176,9 +176,9 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, "whimsicalwinds.refmap.json"
+    add sourceSets.main, "whimsey.refmap.json"
 
-    config "whimsicalwinds.mixins.json"
+    config "whimsey.mixins.json"
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

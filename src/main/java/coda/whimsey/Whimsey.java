@@ -1,16 +1,21 @@
-package coda.whimsicalwinds;
+package coda.whimsey;
 
-import coda.whimsicalwinds.terrablender.WWBiomes;
-import coda.whimsicalwinds.terrablender.WWOverworldBiomes;
-import coda.whimsicalwinds.terrablender.WWRegion;
-import coda.whimsicalwinds.terrablender.WWSurfaceRuleData;
-import coda.whimsicalwinds.util.ClientLevelExtension;
+import coda.whimsey.registry.WItems;
+import coda.whimsey.terrablender.WBiomes;
+import coda.whimsey.terrablender.WOverworldBiomes;
+import coda.whimsey.terrablender.WRegion;
+import coda.whimsey.terrablender.WSurfaceRuleData;
+import coda.whimsey.util.ClientLevelExtension;
+import coda.whimsey.util.datagen.WLanguageProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,30 +26,46 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
-@Mod(WhimsicalWinds.MOD_ID)
-public class WhimsicalWinds {
-    public static final String MOD_ID = "whimsicalwinds";
+@Mod(Whimsey.MOD_ID)
+public class Whimsey {
+    public static final String MOD_ID = "whimsey";
+    public static final CreativeModeTab GROUP = new CreativeModeTab(MOD_ID) {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(WItems.PHOENIX_ASHES.get());
+        }
+    };
 
-    public WhimsicalWinds() {
+    public Whimsey() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 
         forgeBus.addListener(this::addWeather);
         forgeBus.addListener(this::checkSpawns);
 
+        WItems.ITEMS.register(bus);
+
+        bus.addListener(this::dataGen);
         bus.addListener(this::commonSetup);
         bus.addGenericListener(Biome.class, this::registerBiomes);
     }
 
+    private void dataGen(GatherDataEvent e) {
+        DataGenerator gen = e.getGenerator();
+
+        gen.addProvider(new WLanguageProvider(gen));
+    }
+
     private void registerBiomes(RegistryEvent.Register<Biome> event) {
         IForgeRegistry<Biome> registry = event.getRegistry();
-        registry.register(WWOverworldBiomes.regalMeadow().setRegistryName(WWBiomes.REGAL_MEADOW.location()));
-        registry.register(WWOverworldBiomes.stormySea().setRegistryName(WWBiomes.STORMY_SEA.location()));
-        registry.register(WWOverworldBiomes.rollingHills().setRegistryName(WWBiomes.ROLLING_HILLS.location()));
+        registry.register(WOverworldBiomes.regalMeadow().setRegistryName(WBiomes.REGAL_MEADOW.location()));
+        registry.register(WOverworldBiomes.stormySea().setRegistryName(WBiomes.STORMY_SEA.location()));
+        registry.register(WOverworldBiomes.rollingHills().setRegistryName(WBiomes.ROLLING_HILLS.location()));
     }
 
     private void checkSpawns(BiomeLoadingEvent e) {
@@ -55,27 +76,27 @@ public class WhimsicalWinds {
         BlockPos pos = player.blockPosition();
         Level level = player.level;
 
-        if (level.getBiome(pos).is(WWBiomes.STORMY_SEA) && level.isClientSide && !((ClientLevelExtension)level).isDark()) {
+        if (level.getBiome(pos).is(WBiomes.STORMY_SEA) && level.isClientSide && !((ClientLevelExtension)level).isDark()) {
             ((ClientLevelExtension)level).setDark(true);
-        } else if (!level.getBiome(pos).is(WWBiomes.STORMY_SEA) && level.isClientSide && ((ClientLevelExtension)level).isDark()){
+        } else if (!level.getBiome(pos).is(WBiomes.STORMY_SEA) && level.isClientSide && ((ClientLevelExtension)level).isDark()){
             ((ClientLevelExtension)level).setDark(false);
         }
 
-        if (level.random.nextInt(1000) == 0 && level.isClientSide && level.getBiome(pos).is(WWBiomes.STORMY_SEA)) {
+        if (level.random.nextInt(1000) == 0 && level.isClientSide && level.getBiome(pos).is(WBiomes.STORMY_SEA)) {
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, 10000.0F, 0.8F + level.random.nextFloat() * 0.2F, false);
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.LIGHTNING_BOLT_IMPACT, SoundSource.WEATHER, 2.0F, 0.5F + level.random.nextFloat() * 0.2F, false);
         }
 
-        if (level.getBiome(pos).is(WWBiomes.STORMY_SEA) && e.player.isPassenger() && e.player.getVehicle() instanceof Boat boat && player.getRandom().nextFloat() > 0.65F) {
+        if (level.getBiome(pos).is(WBiomes.STORMY_SEA) && e.player.isPassenger() && e.player.getVehicle() instanceof Boat boat && player.getRandom().nextFloat() > 0.65F) {
             boat.onAboveBubbleCol(true);
         }
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            Regions.register(new WWRegion(new ResourceLocation(MOD_ID, "overworld"), 2));
+            Regions.register(new WRegion(new ResourceLocation(MOD_ID, "overworld"), 2));
 
-            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, WWSurfaceRuleData.makeRules());
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, WSurfaceRuleData.makeRules());
         });
     }
 }
