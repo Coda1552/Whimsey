@@ -1,5 +1,6 @@
 package coda.whimsey;
 
+import coda.whimsey.registry.WBlocks;
 import coda.whimsey.registry.WItems;
 import coda.whimsey.terrablender.WBiomes;
 import coda.whimsey.terrablender.WOverworldBiomes;
@@ -49,6 +50,7 @@ public class Whimsey {
         forgeBus.addListener(this::checkSpawns);
 
         WItems.ITEMS.register(bus);
+        WBlocks.BLOCKS.register(bus);
 
         bus.addListener(this::dataGen);
         bus.addListener(this::commonSetup);
