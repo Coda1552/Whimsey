@@ -1,11 +1,13 @@
 package coda.whimsey;
 
+import coda.whimsey.common.entities.Phoenix;
 import coda.whimsey.registry.WBlocks;
+import coda.whimsey.registry.WEntities;
 import coda.whimsey.registry.WItems;
-import coda.whimsey.terrablender.WBiomes;
-import coda.whimsey.terrablender.WOverworldBiomes;
-import coda.whimsey.terrablender.WRegion;
-import coda.whimsey.terrablender.WSurfaceRuleData;
+import coda.whimsey.common.terrablender.WBiomes;
+import coda.whimsey.common.terrablender.WOverworldBiomes;
+import coda.whimsey.common.terrablender.WRegion;
+import coda.whimsey.common.terrablender.WSurfaceRuleData;
 import coda.whimsey.util.ClientLevelExtension;
 import coda.whimsey.util.datagen.WLanguageProvider;
 import net.minecraft.core.BlockPos;
@@ -22,7 +24,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -47,13 +49,14 @@ public class Whimsey {
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 
         forgeBus.addListener(this::addWeather);
-        forgeBus.addListener(this::checkSpawns);
 
         WItems.ITEMS.register(bus);
+        WEntities.ENTITIES.register(bus);
         WBlocks.BLOCKS.register(bus);
 
         bus.addListener(this::dataGen);
         bus.addListener(this::commonSetup);
+        bus.addListener(this::createAttributes);
         bus.addGenericListener(Biome.class, this::registerBiomes);
     }
 
@@ -63,14 +66,15 @@ public class Whimsey {
         gen.addProvider(new WLanguageProvider(gen));
     }
 
-    private void registerBiomes(RegistryEvent.Register<Biome> event) {
-        IForgeRegistry<Biome> registry = event.getRegistry();
+    private void createAttributes(EntityAttributeCreationEvent e) {
+        e.put(WEntities.PHOENIX.get(), Phoenix.createAttributes().build());
+    }
+
+    private void registerBiomes(RegistryEvent.Register<Biome> e) {
+        IForgeRegistry<Biome> registry = e.getRegistry();
         registry.register(WOverworldBiomes.regalMeadow().setRegistryName(WBiomes.REGAL_MEADOW.location()));
         registry.register(WOverworldBiomes.stormySea().setRegistryName(WBiomes.STORMY_SEA.location()));
         registry.register(WOverworldBiomes.rollingHills().setRegistryName(WBiomes.ROLLING_HILLS.location()));
-    }
-
-    private void checkSpawns(BiomeLoadingEvent e) {
     }
 
     private void addWeather(TickEvent.PlayerTickEvent e) {

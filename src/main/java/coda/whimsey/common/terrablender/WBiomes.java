@@ -1,4 +1,4 @@
-package coda.whimsey.terrablender;
+package coda.whimsey.common.terrablender;
 
 import coda.whimsey.Whimsey;
 import net.minecraft.core.Registry;

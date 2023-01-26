@@ -1,6 +1,6 @@
 package coda.whimsey.mixin;
 
-import coda.whimsey.terrablender.WBiomes;
+import coda.whimsey.common.terrablender.WBiomes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;

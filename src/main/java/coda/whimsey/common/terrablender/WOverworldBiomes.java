@@ -1,4 +1,4 @@
-package coda.whimsey.terrablender;
+package coda.whimsey.common.terrablender;
 
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.placement.AquaticPlacements;

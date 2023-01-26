@@ -1,4 +1,4 @@
-package coda.whimsey.terrablender;
+package coda.whimsey.common.terrablender;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.SurfaceRules;

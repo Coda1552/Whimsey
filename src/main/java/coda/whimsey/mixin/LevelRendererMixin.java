@@ -1,6 +1,6 @@
 package coda.whimsey.mixin;
 
-import coda.whimsey.terrablender.WBiomes;
+import coda.whimsey.common.terrablender.WBiomes;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
