@@ -78,22 +78,24 @@ public class PhoenixModel<T extends Phoenix> extends EntityModel<T> {
 		this.head.xRot = headPitch * (Mth.PI / 180F);
 		this.head.yRot = netHeadYaw * (Mth.PI / 180F);
 
-		this.body.xRot = Mth.cos(ageInTicks * 0.3F) * 0.05F - 0.1F;
-		this.body.y = Mth.sin(ageInTicks * 0.3F) * 0.4F;
+		float speed = 0.1F;
 
-		this.head.xRot += Mth.cos(ageInTicks * 0.3F + Mth.PI) * 0.05F + 0.1F;
-		this.head.y = Mth.sin(ageInTicks * 0.3F) * 0.4F - 15.5F;
+		this.body.xRot = Mth.cos(ageInTicks * speed) * 0.05F - 0.1F;
+		this.body.y = Mth.sin(ageInTicks * speed) * 0.4F;
 
-		this.leftWing.xRot = Mth.cos(ageInTicks * 0.3F) * 0.05F + 0.2F;
-		this.leftWing.y = Mth.cos(ageInTicks * 0.3F) * 0.4F - 15.0F;
+		this.head.xRot += Mth.cos(ageInTicks * speed + Mth.PI) * 0.05F + 0.1F;
+		this.head.y = Mth.sin(ageInTicks * speed) * 0.4F - 15.5F;
 
-		this.rightWing.xRot = Mth.cos(ageInTicks * 0.3F) * 0.05F + 0.2F;
-		this.rightWing.y = Mth.cos(ageInTicks * 0.3F) * 0.4F - 15.0F;
+		this.leftWing.xRot = Mth.cos(ageInTicks * speed) * 0.05F + 0.2F;
+		this.leftWing.y = Mth.cos(ageInTicks * speed) * 0.4F - 15.0F;
 
-		this.tail.xRot = Mth.cos(ageInTicks * 0.3F) * 0.2F - 0.35F;
-		this.tail.y = Mth.cos(ageInTicks * 0.3F) * 0.4F - 16.0F;
+		this.rightWing.xRot = Mth.cos(ageInTicks * speed) * 0.05F + 0.2F;
+		this.rightWing.y = Mth.cos(ageInTicks * speed) * 0.4F - 15.0F;
 
-		this.tailTip.xRot = Mth.cos(1.0F - ageInTicks * 0.3F) * 0.15F + 0.675F;
+		this.tail.xRot = Mth.cos(ageInTicks * speed) * 0.2F - 0.35F;
+		this.tail.y = Mth.cos(ageInTicks * speed) * 0.4F - 16.0F;
+
+		this.tailTip.xRot = Mth.cos(1.0F - ageInTicks * speed) * 0.15F + 0.675F;
 	}
 
 	@Override

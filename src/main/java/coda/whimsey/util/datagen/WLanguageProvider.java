@@ -17,6 +17,16 @@ public class WLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         add(WItems.PHOENIX_ASHES.get(), "Phoenix Ashes");
         add(WItems.PHOENIX_SPAWN_EGG.get(), "Phoenix Spawn Egg");
+        add(WItems.ASHENSTEEL_INGOT.get(), "Ashensteel Ingot");
+        add(WItems.ASHENSTEEL_SWORD.get(), "Ashensteel Blade");
+        add(WItems.ASHENSTEEL_AXE.get(), "Ashensteel Waraxe");
+        add(WItems.ASHENSTEEL_HOE.get(), "Ashensteel Hoe");
+        add(WItems.ASHENSTEEL_PICKAXE.get(), "Ashensteel Pickaxe");
+        add(WItems.ASHENSTEEL_SHOVEL.get(), "Ashensteel Shovel");
+        add(WItems.ASHENSTEEL_HELMET.get(), "Ashensteel Helmet");
+        add(WItems.ASHENSTEEL_CHESTPLATE.get(), "Ashensteel Chestplate");
+        add(WItems.ASHENSTEEL_LEGGINGS.get(), "Ashensteel Leggings");
+        add(WItems.ASHENSTEEL_BOOTS.get(), "Ashensteel Boots");
 
         add(WBlocks.ASHENSTEEL_BLOCK.get(), "Block of Ashensteel");
 

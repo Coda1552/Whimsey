@@ -4,6 +4,17 @@
   "biome.whimsey.stormy_sea": "Stormy Sea",
   "block.whimsey.ashensteel_block": "Block of Ashensteel",
   "entity.whimsey.phoenix": "Phoenix",
+  "item.whimsey.ashensteel_axe": "Ashensteel Waraxe",
+  "item.whimsey.ashensteel_boots": "Ashensteel Boots",
+  "item.whimsey.ashensteel_chestplate": "Ashensteel Chestplate",
+  "item.whimsey.ashensteel_helmet": "Ashensteel Helmet",
+  "item.whimsey.ashensteel_hoe": "Ashensteel Hoe",
+  "item.whimsey.ashensteel_ingot": "Ashensteel Ingot",
+  "item.whimsey.ashensteel_leggings": "Ashensteel Leggings",
+  "item.whimsey.ashensteel_pickaxe": "Ashensteel Pickaxe",
+  "item.whimsey.ashensteel_shovel": "Ashensteel Shovel",
+  "item.whimsey.ashensteel_sword": "Ashensteel Blade",
   "item.whimsey.phoenix_ashes": "Phoenix Ashes",
+  "item.whimsey.phoenix_spawn_egg": "Phoenix Spawn Egg",
   "itemGroup.whimsey": "Whimsey"
 }
